@@ -6,5 +6,5 @@ functions:
   get-customer:
     lang: node12
     handler: ./get-customer
-    image: aleNarder/get-customer:latest
+    image: alenarder/get-customer:latest
 
