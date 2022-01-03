@@ -38,7 +38,7 @@ jobs:
 
       - name: Publish functions
         run: >
-          OWNER="${{ steps.get_repo_owner.outputs.repo_owner }}"
+          OWNER=alenarder
           TAG="latest"
           faas-cli publish
           --extra-tag ${{ github.sha }}
