@@ -45,7 +45,7 @@ jobs:
 
       - name: Login
         run: >
-          faas-cli login --gateway ${{secrets.OPENFAAS_URL}} --password-string ${{secrets.OPENFAAS_PASSWORD}}
+          faas-cli login --gateway ${{secrets.OPENFAAS_URL}} --password ${{secrets.OPENFAAS_PASSWORD}}
 
       - name: Deploy
         run: >
