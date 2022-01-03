@@ -35,6 +35,10 @@ jobs:
           docker login --username
           ${{ secrets.DOCKERHUB_USERNAME }}
           --password-stdin
+      - name: Login
+        run: >
+          echo ${{secrets.OPENFAAS_PASSWORD}} |
+          faas-cli login --gateway ${{secrets.OPENFAAS_URL}} --password-stdin
       - name: Publish functions
         run: >
           OWNER="${{ steps.get_repo_owner.outputs.repo_owner }}"
@@ -42,10 +46,6 @@ jobs:
           faas-cli publish
           --extra-tag ${{ github.sha }}
           --platforms linux/amd64
-      - name: Login
-        run: >
-          echo ${{secrets.OPENFAAS_PASSWORD}} |
-          faas-cli login --gateway ${{secrets.OPENFAAS_URL}} --password-stdin
       - name: Deploy
         run: >
           OWNER="${{ steps.get_repo_owner.outputs.repo_owner }}"
