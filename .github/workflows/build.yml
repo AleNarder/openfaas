@@ -44,7 +44,6 @@ jobs:
           OWNER="${{ steps.get_repo_owner.outputs.repo_owner }}"
           TAG="latest"
           faas-cli publish
-          --extra-tag ${{ github.sha }}
           --platforms linux/amd64
       - name: Deploy
         run: >

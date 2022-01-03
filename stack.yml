@@ -1,7 +1,7 @@
 version: 1.0
 provider:
   name: openfaas
-  gateway: https://m345.link
+  gateway: http://localhost:8080
 functions:
   get-customer:
     lang: node12
