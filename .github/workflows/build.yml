@@ -1,4 +1,4 @@
-name: build-and-deploy
+name: build
 
 on:
   push:
@@ -31,9 +31,10 @@ jobs:
 
       - name: Docker Login
         run: >
+          echo ${{secrets.DOCKER_PASSWORD}} |
           docker login ghcr.io --username
           ${{ steps.get_repo_owner.outputs.repo_owner }}
-          --password ${{secrets.DOCKER_PASSWORD}}
+          --password-stdin
 
       - name: Publish functions
         run: >
@@ -45,7 +46,8 @@ jobs:
 
       - name: Login
         run: >
-          faas-cli login --gateway ${{secrets.OPENFAAS_URL}} --password ${{secrets.OPENFAAS_PASSWORD}}
+          echo ${{secrets.OPENFAAS_PASSWORD}} |
+          faas-cli login --gateway ${{secrets.OPENFAAS_URL}} --password-stdin
 
       - name: Deploy
         run: >
