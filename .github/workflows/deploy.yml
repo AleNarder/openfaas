@@ -1,0 +1,34 @@
+name: build
+
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+        with:
+          fetch-depth: 1
+      - name: Get faas-cli
+        run: curl -sLSf https://cli.openfaas.com | sudo sh
+      - name: Container Registry Login
+        run: >
+          echo ${{ secrets.DOCKERHUB_PASSWORD }} |
+          docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+      - name: OpenFaas Login
+        run: >  
+          echo ${{ secrets.OPENFAAS_PASSWORD }} |
+          faas-cli login --gateway ${{secrets.OPENFAAS_URL}} --password-stdin
+      - name: Build
+        run: faas-cli build
+      - name: Push
+        run: faas-cli push
+      - name: Deploy
+        run: faas-cli deploy --gateway ${{ secrets.OPENFAAS_URL }}
+

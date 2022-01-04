@@ -1,10 +1,14 @@
 version: 1.0
 provider:
   name: openfaas
-  gateway: http://localhost:8080
 functions:
-  get-customer:
-    lang: node12
-    handler: ./get-customer
-    image: alenarder/get-customer:latest
+  pyfunc:
+    lang: python3
+    handler: ./pyfunc
+    image: alessionarder98/pyfunc:latest
+
+  nodefunc:
+    lang: node14
+    handler: ./nodefunc
+    image: alessionarder98/nodefunc:latest
 
