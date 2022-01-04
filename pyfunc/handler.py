@@ -3,4 +3,4 @@ def handle(req):
     Args:
         req (str): request body
     """
-    return "Hello from pyfunc"
+    return "Hi from pyfunc"

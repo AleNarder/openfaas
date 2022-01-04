@@ -1,3 +1,4 @@
 template
 build
-secrets.txt
+node_modules
+.vscode

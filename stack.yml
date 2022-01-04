@@ -1,6 +1,8 @@
 version: 1.0
 provider:
   name: openfaas
+  gateway: 127.0.0.1:8080
+
 functions:
   pyfunc:
     lang: python3
