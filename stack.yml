@@ -13,4 +13,8 @@ functions:
     lang: node14
     handler: ./nodefunc
     image: alessionarder98/nodefunc:latest
+    annotations:
+      topic: cron-function
+      schedule: "*/5 * * * *"
+
 
